@@ -3,7 +3,8 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 from os import listdir
-import cv2
+import matplotlib.pyplot as plt
+import matplotlib as matplt
 
 #%% Path
 img = './train_1_img'
@@ -23,19 +24,17 @@ def imageDecode(image):
     images = tf.expand_dims(image, axis=0) / 255.0
     return images, h, w
 
-def box2yoloFormat(center_x, center_y, length, width, ORIGIN_WIDTH, ORIGIN_HEIGHT):
-    box_center_x = center_x / ORIGIN_WIDTH
-    box_center_y = center_y / ORIGIN_HEIGHT
-    box_width = length / ORIGIN_WIDTH
-    box_height = width / ORIGIN_HEIGHT
-    return (box_center_x, box_center_y, box_width, box_height) 
-
 #%% Load 
-Lf = os.path.join(label, data_list_label[0])
-f = np.loadtxt(Lf)
-Li = os.path.join(img, data_list_img[0])
+IMG = []
+LAB = []
+for idx in range(len(data_list_img)):
+    Lf = os.path.join(label, data_list_label[idx])
+    fil = np.loadtxt(Lf)
+    if fil.shape[0]!=0:
+        Li = os.path.join(img, data_list_img[idx])
+        img_org = matplt.image.imread(Li)
+        IMG.append(img_org)
+        LAB.append(fil)
 
-
-
-
-  
+sP = 'Data_1.npz'
+np.savez_compressed(sP, IMG=IMG, LAB=LAB)
