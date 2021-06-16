@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Mine
+/abner/train_1_img
+/abner/train_1_label
