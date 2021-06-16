@@ -106,7 +106,7 @@ def main():
     
     dataPath = 'D:/Downloads/waymo/data/valid_0'
     outputPath = './data/valid_0.record'
-    labelmapPath = './label_map.pbtxt'
+    labelmapPath = './data/label_map.pbtxt'
 
     global label_map_dict
     label_map = label_map_util.load_labelmap(labelmapPath)
