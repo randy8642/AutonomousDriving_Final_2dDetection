@@ -5,7 +5,7 @@ from PIL import Image
 import numpy as np
 from object_detection.utils import visualization_utils as viz_utils
 
-def load_image_into_numpy_array(path):
+def load_image_into_numpy_array(path) -> np.ndarray:
   """Load an image from file into a numpy array.
 
   Puts image into numpy array to feed into tensorflow graph.
@@ -21,8 +21,7 @@ def load_image_into_numpy_array(path):
   img_data = tf.io.gfile.GFile(path, 'rb').read()
   image = Image.open(BytesIO(img_data))
   (im_width, im_height) = image.size
-  return np.array(image.getdata()).reshape(
-      (im_height, im_width, 3)).astype(np.uint8)
+  return np.array(image.getdata()).reshape((im_height, im_width, 3)).astype(np.uint8)
 
 def plot_detections(image_np,
                     boxes,
