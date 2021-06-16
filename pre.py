@@ -7,9 +7,7 @@ from waymo_open_dataset.utils import  frame_utils
 import matplotlib.pyplot as plt
 
 FILEPATH = {
-    'train': './training',
-    'test': './testing',
-    'val': './validation',
+    'val': '/validation',
 }
 
 def getdataSet(filepath):
