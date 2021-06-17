@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 
 # Mine
-/abner/train
-/abner/valid
+/abner/train_0
+/abner/train_1
+/abner/valid_0
 /abner/darknet
