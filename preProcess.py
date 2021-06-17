@@ -1,3 +1,7 @@
+'''
+https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#configuring-a-training-job
+https://neptune.ai/blog/how-to-train-your-own-object-detector-using-tensorflow-object-detection-api
+'''
 import os
 import numpy as np
 import pandas as pd
@@ -6,8 +10,6 @@ from collections import namedtuple
 from object_detection.utils import dataset_util, label_map_util
 from PIL import Image
 import io
-
-from util import load_image_into_numpy_array, plot_detections
 
 
 label_map_dict = ''
@@ -104,8 +106,8 @@ def create_tf_example(group, folderPath: str):
 
 def main():
     
-    dataPath = 'D:/Downloads/waymo/data/valid_0'
-    outputPath = './data/valid_0.record'
+    dataPath = 'D:/Downloads/waymo/data/test_0'
+    outputPath = './data/test_0.record'
     labelmapPath = './data/label_map.pbtxt'
 
     global label_map_dict
