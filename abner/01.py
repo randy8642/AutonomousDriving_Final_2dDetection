@@ -3,20 +3,6 @@ from os import listdir
 import shutil
 
 #%% Func
-def _split(path):
-    JP = []
-    L = listdir(path)
-    datatype = path.split('./')[-1]
-    for i in range(len(L)):
-        f = L[i]
-        ff = f.split('.')
-        if ff[-1]=='jpg':
-            JP.append('../'+ datatype + '/' + f)
-    with open('./waymo_object_detection/cfg/' + datatype + '.txt', 'w') as output:
-        for row in JP:
-            output.write(str(row) + '\n')            
-    return JP
-
 def _split2(dic):
     TRA = dic['train']
     VAL = dic['valid']   
