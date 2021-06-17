@@ -11,7 +11,7 @@ def _split(path):
         f = L[i]
         ff = f.split('.')
         if ff[-1]=='jpg':
-            JP.append('./'+ datatype + '/' + f)
+            JP.append('../'+ datatype + '/' + f)
     with open('./waymo_object_detection/cfg/' + datatype + '.txt', 'w') as output:
         for row in JP:
             output.write(str(row) + '\n')            
@@ -57,8 +57,8 @@ with open('./waymo_object_detection/cfg/object.names',mode='w') as f:
 #%% DATA
 with open('./waymo_object_detection/cfg/object.data',mode='w') as f:   
     f.write(f'classes = {len(classes)}\n')
-    f.write(f'train = ./waymo_object_detection/cfg/train.txt\n')
-    f.write(f'valid = ./waymo_object_detection/cfg/val.txt\n')
-    f.write(f'names = ./waymo_object_detection/cfg/object.names\n')
-    f.write(f'backup = ./waymo_object_detection/cfg/weights\n')
+    f.write(f'train = ../waymo_object_detection/cfg/train.txt\n')
+    f.write(f'valid = ../waymo_object_detection/cfg/val.txt\n')
+    f.write(f'names = ../waymo_object_detection/cfg/object.names\n')
+    f.write(f'backup = ../waymo_object_detection/cfg/weights\n')
 
