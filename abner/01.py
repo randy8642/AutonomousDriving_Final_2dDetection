@@ -41,9 +41,13 @@ if not os.path.exists('waymo_object_detection'):
 if not os.path.exists('waymo_object_detection/cfg'):
     os.mkdir('waymo_object_detection/cfg') 
     os.mkdir('waymo_object_detection/weights')
+    os.mkdir('waymo_object_detection/visualization')
 
 if not os.path.exists('waymo_object_detection/cfg/face.data'):
     shutil.copyfile('darknet/cfg/coco.data', 'waymo_object_detection/cfg/object.data')
+
+if not os.path.exists('waymo_object_detection/visualization/train_yolov4.log'):
+    shutil.copyfile('darknet/cfg/coco.data', 'waymo_object_detection/visualization/train_yolov4.log')
 
 if not os.path.exists('waymo_object_detection/cfg/face.names'):
     shutil.copyfile('darknet/cfg/coco.names', 'waymo_object_detection/cfg/object.names')
@@ -83,3 +87,7 @@ with open('./waymo_object_detection/cfg/object.data',mode='w') as f:
     f.write(f'names = ../waymo_object_detection/cfg/object.names\n')
     f.write(f'backup = backup\n')
 
+#%% Remind
+print('NEED >> yolov4-tiny.conv.29 & yolo-obj.cfg')
+print('Markfile')
+print('GPU=1, CUDNN=1, CUDNN_HALF=1, OPENCV=1')
