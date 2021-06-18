@@ -39,7 +39,7 @@ def getExamples(folderPath):
             label = classes[label]
 
             filename = os.path.splitext(txt)[0] + '.jpg'
-            row.append([filename, w, h, label, x_min, y_min, x_max, y_max])
+            row.append([filename, w, h, label, y_min, x_min, y_max, x_max])
 
             line = fs.readline()
 
@@ -80,10 +80,10 @@ def create_tf_example(group, folderPath: str):
     classes = []
 
     for index, row in group.object.iterrows():
-        xmins.append(row['xmin'] / width)
-        xmaxs.append(row['xmax'] / width)
-        ymins.append(row['ymin'] / height)
-        ymaxs.append(row['ymax'] / height)
+        xmins.append(row['xmin'])
+        xmaxs.append(row['xmax'])
+        ymins.append(row['ymin'])
+        ymaxs.append(row['ymax'])
         classes_text.append(row['class'].encode('utf8'))
         classes.append(class_text_to_int(row['class']))
 
@@ -107,8 +107,8 @@ def create_tf_example(group, folderPath: str):
 def main():
 
     dataPath = 'D:/Downloads/waymo/data/train_1'
-    outputPath = './workspace/data/train_1.record'
-    labelmapPath = './workspace/data/label_map.pbtxt'
+    outputPath = './data/train_1.record'
+    labelmapPath = './data/label_map.pbtxt'
 
     global label_map_dict
     label_map = label_map_util.load_labelmap(labelmapPath)
