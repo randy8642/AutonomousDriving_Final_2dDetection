@@ -1,40 +1,81 @@
 import numpy as np
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-import tensorflow as tf
 from os import listdir
 import matplotlib.pyplot as plt
-import matplotlib as matplt
 
 #%% Path
-img = './train_1_img'
-label = './train_1_label'
-
-data_list_img = listdir(img)
-data_list_label = listdir(label)
-
-#%% Para
-HEIGHT, WIDTH = (640, 960)
+dic = {'train':['./train_0', './train_1'], 'valid':['./valid_0']}
 
 #%% Func
-def imageDecode(image):
-    image = tf.image.decode_jpeg(image)   
-    h, w = image.shape[:2]
-    image = tf.image.resize(image, (HEIGHT, WIDTH)) 
-    images = tf.expand_dims(image, axis=0) / 255.0
-    return images, h, w
+def _txt(dic):
+    P = dic['train']
+    F = []
+    Emp = []
+    for p in P:
+        fL = listdir(p)
+        for nf in fL:
+            if nf.split('.')[-1]=='txt':
+                f = np.loadtxt(os.path.join(p, nf))
+                if len(f)!=0:
+                    if f.ndim==1:
+                        f = f[np.newaxis, :]
+                    F.append(f)
+                else:
+                    Emp.append(f)
+    F = np.vstack(F)
+    return F, Emp
 
-#%% Load 
-IMG = []
-LAB = []
-for idx in range(len(data_list_img)):
-    Lf = os.path.join(label, data_list_label[idx])
-    fil = np.loadtxt(Lf)
-    if fil.shape[0]!=0:
-        Li = os.path.join(img, data_list_img[idx])
-        img_org = matplt.image.imread(Li)
-        IMG.append(img_org)
-        LAB.append(fil)
+def _cal(F):
+    B = np.zeros(5)
+    for i in range(5):
+        A = F[F[:,0]==i]
+        B[i] = len(A)
+    return B
 
-sP = 'Data_1.npz'
-np.savez_compressed(sP, IMG=IMG, LAB=LAB)
+def createLabels(data):
+    for item in data:
+        height = item.get_height()
+        plt.text(
+            item.get_x()+item.get_width()/2., 
+            height*1, 
+            '%d' % int(height),
+            ha = "center",
+            va = "bottom",
+        )    
+        
+
+#%%
+F, Emp = _txt(dic)
+class_num = _cal(F)
+
+#%% Plt
+fig, ax = plt.subplots(1,1)
+classes = [
+    'TYPE_UNKNOWN',
+    'TYPE_VEHICLE',
+    'TYPE_PEDESTRIAN',
+    'TYPE_SIGN',
+    'TYPE_CYCLIST'
+]
+A = plt.bar(classes, class_num)
+createLabels(A)
+ax.set_ylabel('num')
+ax.set_title('Number of class')
+plt.xticks(rotation=25)
+plt.tight_layout()
+plt.savefig('./img/class.png')
+# plt.show()
+
+fig, ax = plt.subplots(1,1)
+x = ['Empty', 'Exist']
+F_num = np.array([len(Emp), len(F)])
+B = plt.bar(x, F_num)
+createLabels(B)
+ax.set_ylabel('num')
+ax.set_title('Number of empty')
+plt.xticks(rotation=25)
+plt.tight_layout()
+plt.savefig('./img/empty.png')
+# plt.show()
+
+
