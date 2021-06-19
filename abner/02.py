@@ -28,7 +28,7 @@ L = listdir(path)
 ML, LL, RL = _img(L)
 sV = 'test.mp4'
 size = (960, 640)
-fps = 1
+fps = 40
 
 OUT_m = []
 OUT_l = []
@@ -50,9 +50,9 @@ for mi, li, ri in zip(ML, LL, RL):
 
 
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-vd_m = cv2.VideoWriter(os.path.join(path, 'test_m.mp4'), fourcc, fps, size)
-vd_l = cv2.VideoWriter(os.path.join(path, 'test_l.mp4'), fourcc, fps, size)
-vd_r = cv2.VideoWriter(os.path.join(path, 'test_r.mp4'), fourcc, fps, size)
+vd_m = cv2.VideoWriter('test_m.mp4', fourcc, fps, size)
+vd_l = cv2.VideoWriter('test_l.mp4', fourcc, fps, size)
+vd_r = cv2.VideoWriter('test_r.mp4', fourcc, fps, size)
 
 for i_m in range(len(OUT_m)):
     vd_m.write(OUT_m[i_m])
