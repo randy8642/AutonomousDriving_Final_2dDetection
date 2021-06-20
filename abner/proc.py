@@ -4,6 +4,7 @@ from os import listdir
 import cv2
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
+import random
 
 #%% Path
 dic = {'train':['./train_0', './train_1'], 'valid':['./valid_0']}
@@ -37,7 +38,7 @@ def _openImg(p, x):
         f = str(i) + '.jpg'
         img = cv2.imread(os.path.join(p, f))
         IMG.append(img[np.newaxis, :, :, :])
-    IMG = np.vstack(IMG)
+    # IMG = np.vstack(IMG)
     return IMG
 
 
@@ -57,14 +58,15 @@ def _img(dic):
         M = _openImg(p, np.arange(0, n, 3))
         L = _openImg(p, np.arange(1, n, 3))
         R = _openImg(p, np.arange(2, n, 3))
-        IM.append(M)
-        IL.append(L)
-        IR.append(R)
-    IM = np.vstack(IM)
-    IL = np.vstack(IL)
-    IR = np.vstack(IR)    
+        IM = IM + M
+        IL = IL + L
+        IR = IR + R
+ 
     return IM, IL, IR
 
+def _rand(X, n):
+    nX = random.sample(X, n)
+    return nX
 
 def _cal(F):
     B = np.zeros(5)
@@ -89,26 +91,15 @@ def createLabels(data):
 F, Emp, Fn, En = _txt(dic)
 class_num = _cal(F)
 '''
+n = 5
 IM, IL, IR = _img(dic)
-
-# np.savez_compressed('X.npz', IM=IM, IL=IL, IR=IR)
+nIM, nIL, nIR = _rand(IM, n), _rand(IL, n), _rand(IR, n)
+X = np.vstack(nIM + nIL + nIR).reshape(n*3, -1)
 
 #%% t-SNE
-'''
-num_M = len(IM)
-num_L = len(IL)
-num_R = len(IR)
-X1 = np.vstack((IM.reshape(num_M, -1), IL.reshape(num_L, -1)))
-X = np.vstack((X1, IR.reshape(num_R, -1)))
-'''
-
-#%%
-'''
 tsne = TSNE(n_components=2, init='random', random_state=5, perplexity=30)
 X_tsne = tsne.fit_transform(X)
-np.save('X_tsne.npy', X_tsne)
-'''
- 
+
 #%% Plt
 '''
 fig, ax = plt.subplots(1,1)
@@ -152,14 +143,14 @@ plt.tight_layout()
 plt.savefig('./img/empty_class.png')
 # plt.show()
 '''
-'''
+
 fig, ax = plt.subplots(1,1)
 colors = ['deepskyblue', 'crimson', 'lawngreen']
-M_plt = ax.scatter(X[:num_M, 0], X[:num_M, 1], c=colors[0], alpha=0.5)
-L_plt = ax.scatter(X[num_M:num_L+num_M, 0], X[num_M:num_L+num_M, 1], c=colors[1], alpha=0.5)
-R_plt = ax.scatter(X[num_L+num_M:num_R+num_L+num_M, 0], X[num_L+num_M:num_R+num_L+num_M, 1], c=colors[2], alpha=0.5)
+M_plt = ax.scatter(X[:n, 0], X[:n, 1], c=colors[0], alpha=0.5)
+L_plt = ax.scatter(X[n:n*2, 0], X[n:n*2, 1], c=colors[1], alpha=0.5)
+R_plt = ax.scatter(X[n*2:n*3, 0], X[n*2:n*3, 1], c=colors[2], alpha=0.5)
 plt.legend((M_plt, L_plt, R_plt), ('Center', 'Left', 'Right'), scatterpoints=1, loc='lower left', ncol=3)
 plt.title('t-SNE of Direction')
 plt.tight_layout()
 plt.savefig('./img/tSNE.png')
-'''
+
