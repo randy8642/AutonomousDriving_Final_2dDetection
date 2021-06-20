@@ -98,6 +98,7 @@ X = np.vstack((X1, IR.reshape(num_R, -1)))
 
 tsne = TSNE(n_components=2, init='random', random_state=5, perplexity=30)
 X_tsne = tsne.fit_transform(X)
+np.save('X_tsne.npy', X_tsne)
  
 #%% Plt
 '''
@@ -144,9 +145,9 @@ plt.savefig('./img/empty_class.png')
 '''
 fig, ax = plt.subplots(1,1)
 colors = ['deepskyblue', 'crimson', 'lawngreen']
-M_plt = ax.scatter(X[:num_M, 0], X[:num_M, 1], c=colors[0])
-L_plt = ax.scatter(X[num_M:num_L+num_M, 0], X[num_M:num_L+num_M, 1], c=colors[1])
-R_plt = ax.scatter(X[num_L+num_M:num_R+num_L+num_M, 0], X[num_L+num_M:num_R+num_L+num_M, 1], c=colors[2])
+M_plt = ax.scatter(X[:num_M, 0], X[:num_M, 1], c=colors[0], alpha=0.5)
+L_plt = ax.scatter(X[num_M:num_L+num_M, 0], X[num_M:num_L+num_M, 1], c=colors[1], alpha=0.5)
+R_plt = ax.scatter(X[num_L+num_M:num_R+num_L+num_M, 0], X[num_L+num_M:num_R+num_L+num_M, 1], c=colors[2], alpha=0.5)
 plt.legend((M_plt, L_plt, R_plt), ('Center', 'Left', 'Right'), scatterpoints=1, loc='lower left', ncol=3)
 plt.title('t-SNE of Direction')
 plt.tight_layout()
