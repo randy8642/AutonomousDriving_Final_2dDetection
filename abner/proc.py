@@ -11,6 +11,8 @@ def _txt(dic):
     P = dic['train']
     F = []
     Emp = []
+    Fn = 0
+    En = 0
     for p in P:
         fL = listdir(p)
         for nf in fL:
@@ -20,10 +22,12 @@ def _txt(dic):
                     if f.ndim==1:
                         f = f[np.newaxis, :]
                     F.append(f)
+                    Fn = Fn + 1
                 else:
                     Emp.append(f)
+                    En = En + 1
     F = np.vstack(F)
-    return F, Emp
+    return F, Emp, Fn, En
 
 def _cal(F):
     B = np.zeros(5)
@@ -45,10 +49,11 @@ def createLabels(data):
         
 
 #%%
-F, Emp = _txt(dic)
+F, Emp, Fn, En = _txt(dic)
 class_num = _cal(F)
 
 #%% Plt
+
 fig, ax = plt.subplots(1,1)
 classes = [
     'TYPE_UNKNOWN',
@@ -68,7 +73,7 @@ plt.savefig('./img/class.png')
 
 fig, ax = plt.subplots(1,1)
 x = ['Empty', 'Exist']
-F_num = np.array([len(Emp), len(F)])
+F_num = np.array([Fn, En])
 B = plt.bar(x, F_num)
 createLabels(B)
 ax.set_ylabel('num')
