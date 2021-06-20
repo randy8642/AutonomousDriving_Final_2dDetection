@@ -37,7 +37,8 @@ def _openImg(p, x):
     for i in x:
         f = str(i) + '.jpg'
         img = cv2.imread(os.path.join(p, f))
-        IMG.append(img[np.newaxis, :, :, :])
+        img_n = cv2.resize(img, (64, 96))
+        IMG.append(img_n[np.newaxis, :, :, :])
     # IMG = np.vstack(IMG)
     return IMG
 
@@ -91,7 +92,7 @@ def createLabels(data):
 F, Emp, Fn, En = _txt(dic)
 class_num = _cal(F)
 '''
-n = 100
+n = 5
 IM, IL, IR = _img(dic)
 nIM, nIL, nIR = _rand(IM, n), _rand(IL, n), _rand(IR, n)
 X = np.vstack(nIM + nIL + nIR).reshape(n*3, -1)
