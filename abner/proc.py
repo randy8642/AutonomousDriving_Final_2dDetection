@@ -85,20 +85,29 @@ def createLabels(data):
         )    
 
 #%%
+'''
 F, Emp, Fn, En = _txt(dic)
 class_num = _cal(F)
+'''
 IM, IL, IR = _img(dic)
 
+# np.savez_compressed('X.npz', IM=IM, IL=IL, IR=IR)
+
 #%% t-SNE
+'''
 num_M = len(IM)
 num_L = len(IL)
 num_R = len(IR)
 X1 = np.vstack((IM.reshape(num_M, -1), IL.reshape(num_L, -1)))
 X = np.vstack((X1, IR.reshape(num_R, -1)))
+'''
 
+#%%
+'''
 tsne = TSNE(n_components=2, init='random', random_state=5, perplexity=30)
 X_tsne = tsne.fit_transform(X)
 np.save('X_tsne.npy', X_tsne)
+'''
  
 #%% Plt
 '''
@@ -143,6 +152,7 @@ plt.tight_layout()
 plt.savefig('./img/empty_class.png')
 # plt.show()
 '''
+'''
 fig, ax = plt.subplots(1,1)
 colors = ['deepskyblue', 'crimson', 'lawngreen']
 M_plt = ax.scatter(X[:num_M, 0], X[:num_M, 1], c=colors[0], alpha=0.5)
@@ -151,4 +161,5 @@ R_plt = ax.scatter(X[num_L+num_M:num_R+num_L+num_M, 0], X[num_L+num_M:num_R+num_
 plt.legend((M_plt, L_plt, R_plt), ('Center', 'Left', 'Right'), scatterpoints=1, loc='lower left', ncol=3)
 plt.title('t-SNE of Direction')
 plt.tight_layout()
-# plt.savefig('./img/tSNE.png')
+plt.savefig('./img/tSNE.png')
+'''
