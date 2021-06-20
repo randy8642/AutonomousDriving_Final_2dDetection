@@ -73,7 +73,7 @@ plt.savefig('./img/class.png')
 
 fig, ax = plt.subplots(1,1)
 x = ['Empty', 'Exist']
-F_num = np.array([Fn, En])
+F_num = np.array([En, Fn])
 B = plt.bar(x, F_num)
 createLabels(B)
 ax.set_ylabel('num')
@@ -81,6 +81,18 @@ ax.set_title('Number of empty')
 plt.xticks(rotation=25)
 plt.tight_layout()
 plt.savefig('./img/empty.png')
+# plt.show()
+
+fig, ax = plt.subplots(1,1)
+x = ['Empty', 'Exist']
+F_num = np.array([len(Emp), len(F)])
+B = plt.bar(x, F_num)
+createLabels(B)
+ax.set_ylabel('num')
+ax.set_title('Number of empty class')
+plt.xticks(rotation=25)
+plt.tight_layout()
+plt.savefig('./img/empty_class.png')
 # plt.show()
 
 
