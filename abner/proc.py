@@ -92,7 +92,7 @@ def createLabels(data):
 F, Emp, Fn, En = _txt(dic)
 class_num = _cal(F)
 '''
-n = 5
+n = 5000
 IM, IL, IR = _img(dic)
 nIM, nIL, nIR = _rand(IM, n), _rand(IL, n), _rand(IR, n)
 X = np.vstack(nIM + nIL + nIR).reshape(n*3, -1)
