@@ -91,12 +91,13 @@ def createLabels(data):
 F, Emp, Fn, En = _txt(dic)
 class_num = _cal(F)
 '''
-n = 5
+n = 100
 IM, IL, IR = _img(dic)
 nIM, nIL, nIR = _rand(IM, n), _rand(IL, n), _rand(IR, n)
 X = np.vstack(nIM + nIL + nIR).reshape(n*3, -1)
 
 #%% t-SNE
+print('=====t-SNE=====')
 tsne = TSNE(n_components=2, init='random', random_state=5, perplexity=30)
 X_tsne = tsne.fit_transform(X)
 
