@@ -50,7 +50,9 @@ cudnn 8
 GPU: Tesla V100-SXM2-32GB
 ```
 ```sh
-git clone https://github.com/AlexeyAB/darknet
+!git clone https://github.com/AlexeyAB/darknet
 !apt install cmake
-wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.conv.29
+!wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.conv.29
+!wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.conv.29
+!cp ./darknet/cfg/yolov4-tiny.cfg ../waymo_object_detection/cfg/yolo-obj.cfg
 ```
