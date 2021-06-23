@@ -133,3 +133,4 @@ dmypy.json
 /else/train_1
 /else/valid_0
 /else/darknet
+.vscode/settings.json
