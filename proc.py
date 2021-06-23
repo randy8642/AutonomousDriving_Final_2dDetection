@@ -3,7 +3,7 @@ import os
 from os import listdir
 import cv2
 import matplotlib.pyplot as plt
-from sklearn.manifold import TSNE
+# from sklearn.manifold import TSNE
 import random
 
 #%% Path
@@ -88,19 +88,19 @@ def createLabels(data):
         )    
 
 #%%
-'''
+
 F, Emp, Fn, En = _txt(dic)
 class_num = _cal(F)
-'''
+
 n = 5000
 IM, IL, IR = _img(dic)
 nIM, nIL, nIR = _rand(IM, n), _rand(IL, n), _rand(IR, n)
 X = np.vstack(nIM + nIL + nIR).reshape(n*3, -1)
 
-#%% t-SNE
-print('=====t-SNE=====')
-tsne = TSNE(n_components=2, init='random', random_state=5, perplexity=30)
-X_tsne = tsne.fit_transform(X)
+# #%% t-SNE
+# print('=====t-SNE=====')
+# tsne = TSNE(n_components=2, init='random', random_state=5, perplexity=30)
+# X_tsne = tsne.fit_transform(X)
 
 #%% Plt
 '''
@@ -146,13 +146,13 @@ plt.savefig('./img/empty_class.png')
 # plt.show()
 '''
 
-fig, ax = plt.subplots(1,1)
-colors = ['deepskyblue', 'crimson', 'lawngreen']
-M_plt = ax.scatter(X[:n, 0], X[:n, 1], c=colors[0], alpha=0.5)
-L_plt = ax.scatter(X[n:n*2, 0], X[n:n*2, 1], c=colors[1], alpha=0.5)
-R_plt = ax.scatter(X[n*2:n*3, 0], X[n*2:n*3, 1], c=colors[2], alpha=0.5)
-plt.legend((M_plt, L_plt, R_plt), ('Center', 'Left', 'Right'), scatterpoints=1, loc='lower left', ncol=3)
-plt.title('t-SNE of Direction')
-plt.tight_layout()
-plt.savefig('./img/tSNE.png')
+# fig, ax = plt.subplots(1,1)
+# colors = ['deepskyblue', 'crimson', 'lawngreen']
+# M_plt = ax.scatter(X[:n, 0], X[:n, 1], c=colors[0], alpha=0.5)
+# L_plt = ax.scatter(X[n:n*2, 0], X[n:n*2, 1], c=colors[1], alpha=0.5)
+# R_plt = ax.scatter(X[n*2:n*3, 0], X[n*2:n*3, 1], c=colors[2], alpha=0.5)
+# plt.legend((M_plt, L_plt, R_plt), ('Center', 'Left', 'Right'), scatterpoints=1, loc='lower left', ncol=3)
+# plt.title('t-SNE of Direction')
+# plt.tight_layout()
+# plt.savefig('./img/tSNE.png')
 
