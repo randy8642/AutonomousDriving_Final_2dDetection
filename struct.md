@@ -56,3 +56,39 @@ GPU: Tesla V100-SXM2-32GB
 !wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.conv.29
 !cp ./darknet/cfg/yolov4-tiny.cfg ../waymo_object_detection/cfg/yolo-obj.cfg
 ```
+```
+train_0
+train_1
+valid_0
+video
+|   valid_0_frontCenter.mp4
+|   valid_0_frontLeft.mp4
+|   valid_0_frontRight.mp4
+
+darknet
+│   chart_yolo-obj.png
+|   Makefile
+|   yolo_frontCenter.avi
+|   yolo_frontLeft.avi
+|   yolo_frontRight.avi
+│   ...
+|
+└───backup
+│   │   yolo-obj_best.weights
+|   │   ...
+
+waymo_object_detection
+│   
+└───visualization
+│   │   train_yolov4.log
+│   │   ...
+│   
+└───cfg
+    │   object.data
+    │   object.names
+    │   train.txt
+    │   valid.txt
+    │   yolo-obj.cfg
+    │   yolov4-tiny.conv.29          
+    │   ...
+```
