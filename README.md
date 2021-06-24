@@ -26,6 +26,10 @@ NCKU Practices of Autonomous Driving course homework
         --pipeline_config_path=./models/pipeline.config \
         --alsologtostderr
     ```
+6. 備註
+    - 訓練完成後會在 `./models` 內產生 `train` 資料夾，\
+    可以透過執行 `tensorboard --logdir ./models` 來查看訓練過程記錄
+    
 ## 檔案說明
 - `waymoTFrecord_decode.py`\
 用於將waymo open dataset的tfrecord檔案拆解
