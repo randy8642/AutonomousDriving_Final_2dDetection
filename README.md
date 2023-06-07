@@ -1,2 +1,21 @@
 # 自動駕駛實務 期末專案 2D物件辨識 AutonomousDriving_Final_2dDetection
 NCKU Practices of Autonomous Driving course homework
+
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0001.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0002.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0003.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0004.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0005.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0006.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0007.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0008.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0009.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0010.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0011.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0012.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0013.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0014.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0015.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0016.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0017.jpg)
+![](https://github.com/randy8642/AutonomousDriving_Final_2dDetection/blob/main/img/final_page-0018.jpg)
